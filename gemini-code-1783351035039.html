@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yash Bakshi — Computer Science Researcher</title>
+<meta name="description" content="Yash Bakshi — M.Tech (Research) at IISc. Computer science, mathematical research, machine learning, and algorithm design.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12233D;
+    --ink-soft:#1C3455;
+    --paper:#FAFAF8;
+    --paper-dim:#F2F0E9;
+    --steel:#2C5F8A;
+    --gold:#A9812E;
+    --slate:#454C55;
+    --slate-light:#767F89;
+    --line:#DDD8CC;
+    --line-dark:rgba(255,255,255,0.14);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--slate);
+    font-family:'Inter',sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 32px;}
+  h1,h2,h3{font-family:'Source Serif 4',serif;color:var(--ink);font-weight:600;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:14px;
+  }
+  .eyebrow::before{content:'';width:22px;height:1px;background:var(--gold);display:inline-block;}
+
+  /* NAV */
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(250,250,248,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1040px;margin:0 auto;padding:18px 32px;
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .nav-name{font-family:'Source Serif 4',serif;font-weight:600;font-size:18px;color:var(--ink);text-decoration:none;}
+  .nav-links{display:flex;gap:28px;list-style:none;}
+  .nav-links a{
+    font-size:13px;font-family:'IBM Plex Mono',monospace;text-decoration:none;
+    color:var(--slate);letter-spacing:0.03em;
+    padding-bottom:3px;border-bottom:1px solid transparent;
+    transition:border-color .2s, color .2s;
+  }
+  .nav-links a:hover{color:var(--steel);border-color:var(--steel);}
+
+  /* HERO */
+  .hero{
+    background:var(--ink);
+    color:#EDEFF3;
+    position:relative;
+    overflow:hidden;
+    border-bottom:4px solid var(--gold);
+  }
+  .hero-inner{
+    max-width:1040px;margin:0 auto;padding:100px 32px 84px;
+    display:grid;grid-template-columns:1.15fr 0.85fr;gap:40px;align-items:center;
+  }
+  .hero-eyebrow{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.14em;
+    text-transform:uppercase;color:#C9A24A;margin-bottom:22px;display:flex;align-items:center;gap:10px;
+  }
+  .hero-eyebrow::before{content:'';width:22px;height:1px;background:#C9A24A;}
+  .hero h1{
+    color:#fff;font-size:clamp(38px,5vw,58px);line-height:1.06;letter-spacing:-0.01em;margin-bottom:20px;
+  }
+  .hero h1 em{font-style:italic;color:#C9A24A;}
+  .hero p.lede{
+    font-size:17px;color:#B9C2CE;max-width:44ch;margin-bottom:34px;
+  }
+  .hero-stats{display:flex;gap:34px;margin-bottom:8px;flex-wrap:wrap;}
+  .hero-stat .num{font-family:'Source Serif 4',serif;font-size:26px;color:#fff;font-weight:600;}
+  .hero-stat .lbl{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8FA0B5;text-transform:uppercase;letter-spacing:.06em;margin-top:2px;}
+  .hero-cta{display:flex;gap:14px;margin-top:36px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.02em;
+    padding:11px 20px;border-radius:2px;text-decoration:none;
+    transition:transform .15s, background .15s, border-color .15s;
+  }
+  .btn-primary{background:#C9A24A;color:var(--ink);font-weight:500;}
+  .btn-primary:hover{background:#dcb35a;transform:translateY(-1px);}
+  .btn-ghost{border:1px solid rgba(255,255,255,0.28);color:#EDEFF3;}
+  .btn-ghost:hover{border-color:#fff;transform:translateY(-1px);}
+
+  /* PCA signature graphic */
+  .pca-wrap{position:relative;aspect-ratio:1/1;max-width:340px;justify-self:center;}
+  .pca-caption{
+    position:absolute;bottom:-30px;left:0;right:0;text-align:center;
+    font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7C8CA0;letter-spacing:.04em;
+  }
+  svg#pcaSvg circle.pt{fill:#5B87AC;}
+  svg#pcaSvg .axis{stroke:#C9A24A;stroke-width:1.5;}
+  svg#pcaSvg .frame{stroke:rgba(255,255,255,0.14);}
+
+  section{padding:84px 0;}
+  section.dim{background:var(--paper-dim);}
+  .section-head{max-width:640px;margin-bottom:48px;}
+  .section-head h2{font-size:clamp(26px,3vw,34px);}
+
+  /* TIMELINE */
+  .timeline{position:relative;padding-left:28px;border-left:1px solid var(--line);}
+  .tl-item{position:relative;padding-bottom:42px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:'';position:absolute;left:-33px;top:4px;width:9px;height:9px;border-radius:50%;
+    background:var(--paper);border:2px solid var(--steel);
+  }
+  .tl-item.research::before{border-color:var(--gold);}
+  .tl-date{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--slate-light);margin-bottom:6px;letter-spacing:.02em;}
+  .tl-item h3{font-size:20px;margin-bottom:3px;}
+  .tl-org{font-size:14.5px;color:var(--steel);font-weight:500;margin-bottom:10px;}
+  .tl-item p{font-size:14.5px;color:var(--slate);max-width:60ch;}
+
+  /* PROJECTS */
+  .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .proj-card{
+    background:#fff;border:1px solid var(--line);border-radius:3px;padding:28px 26px;
+    display:flex;flex-direction:column;
+  }
+  .proj-card h3{font-size:18px;margin-bottom:14px;line-height:1.3;}
+  .proj-card ul{list-style:none;margin-bottom:18px;flex:1;}
+  .proj-card li{
+    font-size:13.8px;color:var(--slate);margin-bottom:10px;padding-left:16px;position:relative;
+  }
+  .proj-card li::before{content:'—';position:absolute;left:0;color:var(--gold);}
+  .tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;}
+  .tag{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--steel);
+    background:#EEF3F7;border:1px solid #DCE6EE;padding:3px 9px;border-radius:2px;
+  }
+
+  /* VIDEO EMBED */
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    border-radius: 4px;
+    margin-top: 30px;
+    border: 1px solid var(--line);
+  }
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* SKILLS */
+  .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;}
+  .skill-col .eyebrow{margin-bottom:16px;font-size:11px;}
+  .skill-list{list-style:none;display:flex;flex-direction:column;gap:9px;}
+  .skill-list li{font-size:14.5px;color:var(--slate);padding-left:14px;position:relative;}
+  .skill-list li::before{content:'';position:absolute;left:0;top:8px;width:5px;height:5px;background:var(--steel);border-radius:50%;}
+
+  /* ACHIEVEMENTS */
+  .ach-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+  .ach-card{
+    background:var(--ink);color:#EDEFF3;padding:34px 30px;border-radius:3px;
+    border-top:3px solid var(--gold);
+  }
+  .ach-card .num{font-family:'Source Serif 4',serif;font-size:38px;color:#fff;font-weight:600;line-height:1;margin-bottom:12px;}
+  .ach-card .num span{font-size:18px;color:#9FB0C3;font-family:'IBM Plex Mono',monospace;font-weight:400;}
+  .ach-card p{font-size:14px;color:#B9C2CE;}
+
+  /* CONTACT */
+  .contact-inner{
+    display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:28px;
+  }
+  .contact-inner h2{font-size:clamp(28px,4vw,40px);max-width:14ch;line-height:1.15;}
+  .contact-links{display:flex;flex-direction:column;gap:14px;align-items:flex-end;}
+  .contact-links a{
+    font-family:'IBM Plex Mono',monospace;font-size:15px;text-decoration:none;color:var(--ink);
+    border-bottom:1px solid var(--line);padding-bottom:3px;transition:border-color .2s,color .2s;
+  }
+  .contact-links a:hover{color:var(--steel);border-color:var(--steel);}
+
+  footer{
+    border-top:1px solid var(--line);padding:26px 0;
+    font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--slate-light);
+  }
+  .footer-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+
+  @media (max-width:760px){
+    .nav-links{display:none;}
+    .hero-inner{grid-template-columns:1fr;padding:70px 24px 56px;}
+    .pca-wrap{max-width:220px;margin-top:20px;}
+    .projects-grid{grid-template-columns:1fr;}
+    .skills-grid{grid-template-columns:1fr;gap:26px;}
+    .ach-grid{grid-template-columns:1fr;}
+    .wrap{padding:0 24px;}
+    .contact-inner{align-items:flex-start;}
+    .contact-links{align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-name">Yash Bakshi</a>
+    <ul class="nav-links">
+      <li><a href="#background">Background</a></li>
+      <li><a href="#projects">Research & Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">M.Tech (Research) · Computer Science &amp; Automation</div>
+      <h1>Solving complex problems<br>with <em>precision.</em></h1>
+      <p class="lede">I'm a researcher at the Indian Institute of Science, working across Ramsey theory, computational graph theory, and applied machine learning pipelines.</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="num">577</div>
+          <div class="lbl">AIR, GATE 2024 CS</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">7.5</div>
+          <div class="lbl">CGPA, IISc</div>
+        </div>
+      </div>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#projects">View research</a>
+        <a class="btn btn-ghost" href="#contact">Get in touch</a>
+      </div>
+    </div>
+    <div class="pca-wrap">
+      <svg id="pcaSvg" viewBox="0 0 300 300" width="100%" height="100%">
+        <rect class="frame" x="0.5" y="0.5" width="299" height="299" fill="none"/>
+        <line class="axis" x1="30" y1="230" x2="270" y2="70" />
+      </svg>
+      <div class="pca-caption">Data reducing to principal components</div>
+    </div>
+  </div>
+</section>
+
+<section id="background">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Background</div>
+      <h2>Education &amp; experience</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item research">
+        <div class="tl-date">Aug 2024 — Present</div>
+        <h3>M.Tech (Research), Computer Science and Automation</h3>
+        <div class="tl-org">Indian Institute of Science (IISc) · CGPA 7.5/10</div>
+        <p>A rigorous research-track program distinct from standard coursework degrees. Current academic focus includes graph theory, combinatorics, and rigorous algorithm design.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Jul 2023 — Jun 2024</div>
+        <h3>Associate Software Analyst</h3>
+        <div class="tl-org">Amicus Technology</div>
+        <p>Software analysis role bridging engineering fundamentals with applied problem-solving, prior to returning to academic research at IISc.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Aug 2019 — May 2023</div>
+        <h3>B.Tech, Computer Science and Engineering</h3>
+        <div class="tl-org">Government Engineering College, Raipur · CGPA 8.92/10</div>
+        <p>Undergraduate degree covering core data structures, algorithms, operating systems, and software engineering.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dim" id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Projects & Research</div>
+      <h2>Theoretical & Applied Work</h2>
+    </div>
+    <div class="projects-grid">
+      <div class="proj-card">
+        <h3>Ramsey Theory & Rado Numbers</h3>
+        <ul>
+          <li>Investigating novel research problems in Ramsey theory, aimed at MS thesis publication.</li>
+          <li>Conducting literature reviews and computational experiments on off-diagonal and disjunctive Rado numbers.</li>
+          <li>Analyzing specific theoretical bounds for linear equations (e.g., x + y + 1 = z).</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">Graph Theory</span><span class="tag">Combinatorics</span><span class="tag">Research</span>
+        </div>
+      </div>
+      <div class="proj-card">
+        <h3>Queueing Simulations & AI Methods</h3>
+        <ul>
+          <li>Leveraging mathematical modeling to simulate and analyze queueing systems.</li>
+          <li>Exploring the application of Large Language Models (LLMs) and AI to solve specialized problems in graph theory.</li>
+          <li>Designing programmatic agents (RL/Python) to automatically learn combinatorial patterns.</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">Python</span><span class="tag">MATLAB</span><span class="tag">Simulation</span>
+        </div>
+      </div>
+      <div class="proj-card">
+        <h3>Classical Machine Learning Pipelines</h3>
+        <ul>
+          <li>Engineered end-to-end sentiment classification using custom PCA (SVD) and Logistic Regression.</li>
+          <li>Built fraud detection pipelines comparing SVM, Random Forest, and XGBoost with SMOTE class balancing.</li>
+          <li>Developed diagnostic models for breast cancer detection using structured tabular data and CNNs for imagery.</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">Scikit-learn</span><span class="tag">NumPy</span><span class="tag">PyTorch</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- YouTube Video Section -->
+    <div style="margin-top: 60px;">
+        <div class="eyebrow">Content Creation</div>
+        <h3 style="margin-bottom: 15px; font-size: 20px;">YouTube Portfolio</h3>
+        <p style="font-size: 15px; color: var(--slate); max-width: 60ch;">Alongside my research, I create engaging video content to break down complex concepts and document my journey.</p>
+        <div class="video-container">
+            <!-- Replace 'YOUR_VIDEO_ID' with the actual YouTube video ID -->
+            <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Skills</div>
+      <h2>Technical toolkit</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-col">
+        <div class="eyebrow mono">Programming</div>
+        <ul class="skill-list">
+          <li>Python</li><li>MATLAB</li><li>Java</li><li>C/C++</li><li>SQL</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <div class="eyebrow mono">Research & Data</div>
+        <ul class="skill-list">
+          <li>LaTeX & Overleaf</li><li>Scikit-learn</li><li>PyTorch</li><li>Pandas & NumPy</li><li>Matplotlib</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <div class="eyebrow mono">Core CS & Math</div>
+        <ul class="skill-list">
+          <li>Combinatorics & Graph Theory</li><li>Data Structures & Algorithms</li><li>DBMS</li><li>Operating Systems</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dim" id="achievements">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Achievements & Interests</div>
+      <h2>Beyond the screen</h2>
+    </div>
+    <div class="ach-grid">
+      <div class="ach-card">
+        <div class="num">AIR 577 <span>/ 123,967</span></div>
+        <p>GATE 2024, Computer Science — ranked among all candidates across India.</p>
+      </div>
+      <div class="ach-card">
+        <div class="num">Rank 87</div>
+        <p>CGPET, among engineering aspirants across Chhattisgarh.</p>
+      </div>
+    </div>
+    <p style="margin-top: 25px; font-size: 14.5px; color: var(--slate);"><strong>Interests:</strong> Travel planning, exploring large monolithic rock treks (like Devarayanadurga), and community web development.</p>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap contact-inner">
+    <h2>Let's talk about research, roles, or collaboration.</h2>
+    <div class="contact-links">
+      <a href="mailto:ybakshi14@gmail.com">ybakshi14@gmail.com</a>
+      <a href="https://www.linkedin.com/in/yash-bakshi-56615a62" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <!-- Add your YouTube channel link here if desired -->
+      <a href="#" target="_blank" rel="noopener">YouTube ↗</a> 
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>© <span id="year"></span> Yash Bakshi</span>
+    <span>Built with care · IISc Bangalore</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const svg = document.getElementById('pcaSvg');
+  const NS = 'http://www.w3.org/2000/svg';
+  const cx = 150, cy = 150;
+  const axisAngle = Math.atan2(70-230, 270-30); 
+  const points = [];
+  const N = 42;
+
+  function seededRandom(seed){
+    let s = seed;
+    return function(){ s = (s*9301+49297)%233280; return s/233280; };
+  }
+  const rnd = seededRandom(7);
+
+  for(let i=0;i<N;i++){
+    const t = (rnd()-0.5)*220;           
+    const spread = (rnd()-0.5)*140;      
+    const startX = cx + Math.cos(axisAngle)*t - Math.sin(axisAngle)*spread;
+    const startY = cy + Math.sin(axisAngle)*t + Math.cos(axisAngle)*spread;
+    const endX = cx + Math.cos(axisAngle)*t;
+    const endY = cy + Math.sin(axisAngle)*t;
+
+    const c = document.createElementNS(NS,'circle');
+    c.setAttribute('class','pt');
+    c.setAttribute('cx', startX.toFixed(2));
+    c.setAttribute('cy', startY.toFixed(2));
+    c.setAttribute('r', (1.6+rnd()*1.8).toFixed(2));
+    c.setAttribute('opacity', (0.55+rnd()*0.4).toFixed(2));
+    svg.appendChild(c);
+    points.push({el:c, startX, startY, endX, endY});
+  }
+
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function animate(ts, start){
+    const duration = 2600;
+    const holdBeforeReverse = 4200;
+    const cycle = duration*2 + holdBeforeReverse;
+    let elapsed = (ts - start) % cycle;
+    let p;
+    if(elapsed < duration){
+      p = elapsed/duration;
+    } else if(elapsed < duration + holdBeforeReverse){
+      p = 1;
+    } else {
+      p = 1 - (elapsed - duration - holdBeforeReverse)/duration;
+    }
+    const ease = p<0.5 ? 2*p*p : 1-Math.pow(-2*p+2,2)/2;
+    points.forEach(pt=>{
+      const x = pt.startX + (pt.endX-pt.startX)*ease;
+      const y = pt.startY + (pt.endY-pt.startY)*ease;
+      pt.el.setAttribute('cx', x.toFixed(2));
+      pt.el.setAttribute('cy', y.toFixed(2));
+    });
+    requestAnimationFrame(t=>animate(t,start));
+  }
+
+  if(reduce){
+    points.forEach(pt=>{
+      pt.el.setAttribute('cx', ((pt.startX+pt.endX)/2).toFixed(2));
+      pt.el.setAttribute('cy', ((pt.startY+pt.endY)/2).toFixed(2));
+    });
+  } else {
+    requestAnimationFrame(t=>animate(t,t));
+  }
+</script>
+
+</body>
+</html>
